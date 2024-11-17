@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * print_number - prints an integer.
+ * print_number - Prints an integer.
  * @n: The integer to prints.
  * Return: Nothing!
  */
@@ -10,6 +10,7 @@
 void print_number(int n)
 
 {
+
 	unsigned int k = n;
 
 	if (n < 0)
