@@ -1,6 +1,4 @@
-#include "main.h"
-
-/**
+/*
  * File: 4-rev_array.c
  * Auth: Brennan D Baraban
  */
