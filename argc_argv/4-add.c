@@ -6,7 +6,7 @@
 /**
  * main - Prints the sum of args positive numbers
  * @argc: argument count
- * @argc: argument vector
+ * @argv: argument vector
  * Return: Always zero
  */
 
