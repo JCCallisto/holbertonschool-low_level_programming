@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
+#include "main.h"
 
 /**
  * print_strings - prints a string
@@ -30,5 +28,5 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	}
 	va_end(stringArgs);
 	printf("\n");
-	
+
 }
