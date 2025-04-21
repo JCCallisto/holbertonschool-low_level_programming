@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 /**
- * _puts_recursion - Prints a string in reverse.
+ * _print_rev_recursion - Prints a string in reverse.
  * @s: The string to reverse.
  * Return: Nothing.
  */
