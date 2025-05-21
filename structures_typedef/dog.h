@@ -9,10 +9,6 @@
  * Description: The attributes of a dog.
  */
 
-/**
- * dog_t - Typedef for dog structure.
- */
-
 typedef struct dog
 
 {
