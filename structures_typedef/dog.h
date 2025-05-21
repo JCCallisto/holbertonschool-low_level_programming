@@ -21,7 +21,7 @@ struct dog
  * dog_t - Typedef for dog structure
  */
 
-typedef struct (dog dog_t);
+typedef struct dog dog_t;
 
 int _putchar(char c);
 
