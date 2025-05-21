@@ -5,7 +5,7 @@ int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 
 /**
- * new_dog - Creates a new dog. 
+ * new_dog - Creates a new dog.
  * @name: Name of the new dog.
  * @age: Age of the new dog.
  * @owner: Owner of the new dog.
@@ -29,7 +29,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 		max_dog->name = malloc(sizeof(char) * name_l);
 
-		if (max_dog->name ==NULL)
+		if (max_dog->name == NULL)
 		{
 			free(max_dog);
 			return (NULL);
