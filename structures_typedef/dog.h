@@ -7,19 +7,16 @@
  * @age: The age of the dog.
  * @owner: The owner of the dog.
  * Description: The attributes of a dog.
+ * dog_t - Typedef for dog structure.
  */
 
-struct dog
+typedef struct dog
 
 {
-	char *name;
-	float age;
-	char *owner;
-};
-
-/**
- * dog_t - Typedef for dog structure
- */
+        char *name;
+        float age;
+        char *owner;
+}dog_t;
 
 typedef struct dog dog_t;
 
