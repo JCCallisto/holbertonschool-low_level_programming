@@ -62,8 +62,7 @@ void print_all(const char * const format, ...)
 {
 	const char *ptr;
 	va_list list;
-	struct
-	{
+	struct {
 		char spec;
 		void (*f)(va_list);
 	} key[4] = { {'c', printf_char}, {'i', printf_int},
