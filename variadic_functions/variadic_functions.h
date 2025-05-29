@@ -9,6 +9,8 @@
  * struct funckey - Structure to hold function pointer and format specifier
  * @spec: Format specifier character ('c', 'i', 'f', 's')
  * @f: Function pointer to printing function that takes va_list
+ * Description: This structure maps format specifier characters to their
+ * corresponding printing functions for variadic argument processing.
  */
 
 typedef struct funckey

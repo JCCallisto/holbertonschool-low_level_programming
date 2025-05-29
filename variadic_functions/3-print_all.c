@@ -62,11 +62,7 @@ void print_all(const char * const format, ...)
 {
 	const char *ptr;
 	va_list list;
-	funckey
-	{
-		char spec;
-		void (*f)(va_list);
-	} key[4] = { {'c', printf_char}, {'i', printf_int},
+	funckey key[4] = { {'c', printf_char}, {'i', printf_int},
 		     {'f', printf_float}, {'s', printf_string} };
 	int i, notfirst = 0;
 
