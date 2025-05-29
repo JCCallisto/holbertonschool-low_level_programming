@@ -76,7 +76,8 @@ void print_all(const char * const format, ...)
 		{
 			if (key[i].spec == *ptr)
 			{
-				notfirst && printf(", ");
+				if (notfirst)
+					printf(", ");
 				notfirst = 1;
 				key[i].f(list);
 				break;
