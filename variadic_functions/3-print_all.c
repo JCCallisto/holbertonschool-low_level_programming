@@ -50,11 +50,7 @@ void printf_string(va_list list)
 {
 	char *str = va_arg(list, char*);
 
-	if (str == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
+	str || (str = "(nil)");
 	printf("%s", str);
 }
 
@@ -71,29 +67,20 @@ void print_all(const char * const format, ...)
 			   {'f', printf_float}, {'s', printf_string} };
 	int i, notfirst = 0;
 
-	if (format == NULL)
-	{
-		printf("\n");
-		return;
-	}
-
 	ptr = format;
 	va_start(list, format);
 	
-	while (*ptr)
+	while (format && *ptr)
 	{
-		i = 0;
-		while (i < 4)
+		for (i = 0; i < 4; i++)
 		{
 			if (key[i].spec == *ptr)
 			{
-				if (notfirst)
-					printf(", ");
+				notfirst && printf(", ");
 				notfirst = 1;
 				key[i].f(list);
 				break;
 			}
-			i++;
 		}
 		ptr++;
 	}
