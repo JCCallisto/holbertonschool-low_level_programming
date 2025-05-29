@@ -53,7 +53,6 @@ void printf_string(va_list list)
 
 /**
  * print_all - Prints various types given a format string for the arguments.
- * struct: Structure to hold function pointer and format specifier.
  * @format: String containing type information for args.
  * Return: void.
  */

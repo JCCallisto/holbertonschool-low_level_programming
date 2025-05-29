@@ -5,13 +5,13 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-typedef struct funckey
-
 /**
  * struct funckey - Structure to hold function pointer and format specifier
  * @spec: Format specifier character ('c', 'i', 'f', 's')
  * @f: Function pointer to printing function that takes va_list
  */
+
+typedef struct funckey
 
 {
     char spec;
