@@ -1,17 +1,14 @@
 #include "variadic_functions.h"
 
 /**
- * struct funckey - Structure to hold function pointer
- * and format specifier.
- * @f: Function pointer to printing function.
+ * struct funckey - Structure to hold function pointer and format specifier
+ * @f: Function pointer to printing function
  * @spec: Format specifier character
  */
-
 typedef struct funckey
-
 {
-	void (*f)(va_list);
 	char spec;
+	void (*f)(va_list);
 } funckey;
 
 /**
@@ -19,9 +16,7 @@ typedef struct funckey
  * @list: va_list to print from.
  * Return: void.
  */
-
 void printf_char(va_list list)
-
 {
 	printf("%c", (char) va_arg(list, int));
 }
@@ -31,9 +26,7 @@ void printf_char(va_list list)
  * @list: va_list to print.
  * Return: void.
  */
-
 void printf_int(va_list list)
-
 {
 	printf("%d", va_arg(list, int));
 }
@@ -43,9 +36,7 @@ void printf_int(va_list list)
  * @list: va_list to print from.
  * Return: void.
  */
-
 void printf_float(va_list list)
-
 {
 	printf("%f", (float) va_arg(list, double));
 }
@@ -55,9 +46,7 @@ void printf_float(va_list list)
  * @list: va_list to print from.
  * Return: void.
  */
-
 void printf_string(va_list list)
-
 {
 	char *str = va_arg(list, char*);
 
@@ -74,14 +63,12 @@ void printf_string(va_list list)
  * @format: String containing type information for args.
  * Return: void.
  */
-
 void print_all(const char * const format, ...)
-
 {
 	const char *ptr;
 	va_list list;
 	funckey key[4] = { {'c', printf_char}, {'i', printf_int},
-		{'f', printf_float}, {'s', printf_string} };
+			   {'f', printf_float}, {'s', printf_string} };
 	int i, notfirst = 0;
 
 	if (format == NULL)
@@ -92,24 +79,24 @@ void print_all(const char * const format, ...)
 
 	ptr = format;
 	va_start(list, format);
-
+	
 	while (*ptr)
-		{
+	{
 		i = 0;
 		while (i < 4)
-			{
+		{
 			if (key[i].spec == *ptr)
-				{
+			{
 				if (notfirst)
-				printf(", ");
+					printf(", ");
 				notfirst = 1;
 				key[i].f(list);
 				break;
-				}
-				i++;
 			}
-		ptr++;
+			i++;
 		}
+		ptr++;
+	}
 	printf("\n");
 
 	va_end(list);
