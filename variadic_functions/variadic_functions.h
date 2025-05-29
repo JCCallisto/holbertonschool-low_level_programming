@@ -5,6 +5,12 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+typedef struct funckey
+{
+    char spec;
+    void (*f)(va_list);
+} funckey;
+
 int _putchar(char c);
 
 int sum_them_all(const unsigned int n, ...);

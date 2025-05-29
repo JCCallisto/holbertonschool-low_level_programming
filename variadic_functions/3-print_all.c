@@ -1,17 +1,6 @@
 #include "variadic_functions.h"
 
 /**
- * struct funckey - Structure to hold function pointer and format specifier
- * @f: Function pointer to printing function
- * @spec: Format specifier character
- */
-typedef struct funckey
-{
-	char spec;
-	void (*f)(va_list);
-} funckey;
-
-/**
  * printf_char - Prints a char from var args.
  * @list: va_list to print from.
  * Return: void.
@@ -63,8 +52,11 @@ void print_all(const char * const format, ...)
 {
 	const char *ptr;
 	va_list list;
-	funckey key[4] = { {'c', printf_char}, {'i', printf_int},
-			   {'f', printf_float}, {'s', printf_string} };
+	struct {
+		char spec;
+		void (*f)(va_list);
+	} key[4] = { {'c', printf_char}, {'i', printf_int},
+		     {'f', printf_float}, {'s', printf_string} };
 	int i, notfirst = 0;
 
 	ptr = format;
