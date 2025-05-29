@@ -1,6 +1,20 @@
 #include "variadic_functions.h"
 
 /**
+ * struct funckey - Structure to hold function pointer
+ * and format specifier.
+ * @f: Function pointer to printing function.
+ * @spec: Format specifier character
+ */
+
+typedef struct funckey
+
+{
+	void (*f)(va_list);
+	char spec;
+} funckey;
+
+/**
  * printf_char - Prints a char from var args.
  * @list: va_list to print from.
  * Return: void.
