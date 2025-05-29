@@ -5,7 +5,9 @@
  * @list: va_list to print from.
  * Return: void.
  */
+
 void printf_char(va_list list)
+
 {
 	printf("%c", (char) va_arg(list, int));
 }
@@ -15,7 +17,9 @@ void printf_char(va_list list)
  * @list: va_list to print.
  * Return: void.
  */
+
 void printf_int(va_list list)
+
 {
 	printf("%d", va_arg(list, int));
 }
@@ -25,7 +29,9 @@ void printf_int(va_list list)
  * @list: va_list to print from.
  * Return: void.
  */
+
 void printf_float(va_list list)
+
 {
 	printf("%f", (float) va_arg(list, double));
 }
@@ -35,7 +41,9 @@ void printf_float(va_list list)
  * @list: va_list to print from.
  * Return: void.
  */
+
 void printf_string(va_list list)
+
 {
 	char *str = va_arg(list, char*);
 
@@ -45,10 +53,13 @@ void printf_string(va_list list)
 
 /**
  * print_all - Prints various types given a format string for the arguments.
+ * struct: Structure to hold function pointer and format specifier.
  * @format: String containing type information for args.
  * Return: void.
  */
+
 void print_all(const char * const format, ...)
+
 {
 	const char *ptr;
 	va_list list;
