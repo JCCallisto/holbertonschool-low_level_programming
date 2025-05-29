@@ -47,7 +47,7 @@ void printf_string(va_list list)
 {
 	char *str = va_arg(list, char*);
 
-	while (str != NULL)
+	if (str != NULL)
 	{
 		printf("%s", str);
 		return;
@@ -66,26 +66,35 @@ void print_all(const char * const format, ...)
 {
 	const char *ptr;
 	va_list list;
-	funckey key[4] = { {printf_char, 'c'}, {printf_int, 'i'},
-			   {printf_float, 'f'}, {printf_string, 's'} };
-	int keyind = 0, notfirst = 0;
+	funckey key[4] = { {'c', printf_char}, {'i', printf_int},
+		{'f', printf_float}, {'s', printf_string} };
+	int i, notfirst = 0;
+
+	if (format == NULL)
+	{
+		printf("\n")
+		return;
+	}
 
 	ptr = format;
 	va_start(list, format);
-	while (format != NULL && *ptr)
+
+	while (*ptr)
 	{
-		if (key[keyind].spec == *ptr)
+		i = 0;
+		while (i < 4)
 		{
-			if (notfirst)
+			if (key[i].spec == *ptr)
+			{
+				if (notfirst)
 				printf(", ");
-			notfirst = 1;
-			key[keyind].f(list);
-			ptr++;
-			keyind = -1;
+				notfirst = 1;
+				key[i].f(list);
+				break;
+			}
+			i++;
 		}
-		keyind++;
-		ptr += keyind / 4;
-		keyind %= 4;
+		ptr++;
 	}
 	printf("\n");
 
