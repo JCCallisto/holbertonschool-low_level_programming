@@ -47,12 +47,12 @@ void printf_string(va_list list)
 {
 	char *str = va_arg(list, char*);
 
-	if (str != NULL)
+	if (str == NULL)
 	{
-		printf("%s", str);
+		printf("(nil)");
 		return;
 	}
-	printf("(nil)");
+	printf("%s", str);
 }
 
 /**
@@ -72,7 +72,7 @@ void print_all(const char * const format, ...)
 
 	if (format == NULL)
 	{
-		printf("\n")
+		printf("\n");
 		return;
 	}
 
@@ -80,22 +80,22 @@ void print_all(const char * const format, ...)
 	va_start(list, format);
 
 	while (*ptr)
-	{
+		{
 		i = 0;
 		while (i < 4)
-		{
-			if (key[i].spec == *ptr)
 			{
+			if (key[i].spec == *ptr)
+				{
 				if (notfirst)
 				printf(", ");
 				notfirst = 1;
 				key[i].f(list);
 				break;
+				}
+				i++;
 			}
-			i++;
-		}
 		ptr++;
-	}
+		}
 	printf("\n");
 
 	va_end(list);
