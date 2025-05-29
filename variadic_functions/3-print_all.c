@@ -72,7 +72,8 @@ void print_all(const char * const format, ...)
 	
 	while (format && *ptr)
 	{
-		for (i = 0; i < 4; i++)
+		i = 0;
+		while (i < 4)
 		{
 			if (key[i].spec == *ptr)
 			{
@@ -82,6 +83,7 @@ void print_all(const char * const format, ...)
 				key[i].f(list);
 				break;
 			}
+			i++;
 		}
 		ptr++;
 	}
