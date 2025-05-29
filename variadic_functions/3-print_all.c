@@ -62,7 +62,7 @@ void print_all(const char * const format, ...)
 {
 	const char *ptr;
 	va_list list;
-	struct
+	funckey
 	{
 		char spec;
 		void (*f)(va_list);
