@@ -23,7 +23,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		/* If the least significant bit is 1, increment count */
 		if (xor_result & 1)
 			count++;
-		
+
 		/* Shift right to check the next bit */
 		xor_result >>= 1;
 	}
