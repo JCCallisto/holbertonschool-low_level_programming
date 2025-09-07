@@ -8,10 +8,11 @@
  */
 
 int get_bit(unsigned long int n, unsigned int index)
-
 {
+	/* Check if index is too large for the data type */
 	if (index >= sizeof(unsigned long int) * 8)
-	return (-1);
+		return (-1);
 
+	/* Shift the bit at index to position 0 and mask with 1 */
 	return ((n >> index) & 1);
 }
