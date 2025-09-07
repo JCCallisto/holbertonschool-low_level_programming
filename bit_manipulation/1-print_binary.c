@@ -11,19 +11,18 @@ void print_binary(unsigned long int n)
 {
 	unsigned long int mask;
 	int started = 0;
-	int i;
 
+	/* Handle special case of 0 */
 	if (n == 0)
-	
 	{
 		_putchar('0');
 		return;
 	}
 
+	/* Find the highest bit position */
 	mask = 1UL << (sizeof(unsigned long int) * 8 - 1);
 
-	for (i = 0; i < (int)(sizeof(unsigned long int) * 8); i++)
-
+	while (mask)
 	{
 		if (n & mask)
 		{
