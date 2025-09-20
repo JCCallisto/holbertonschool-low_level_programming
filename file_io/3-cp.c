@@ -62,8 +62,24 @@ int main(int argc, char *argv[])
 	}
 
 	/* Copy content from source to destination */
-	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	while (1)
 	{
+		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
+		
+		/* Check read return value first */
+		if (bytes_read == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			close_file(fd_from);
+			close_file(fd_to);
+			exit(98);
+		}
+		
+		/* If read returns 0, end of file reached */
+		if (bytes_read == 0)
+			break;
+		
+		/* Only write if we successfully read some data */
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
@@ -72,15 +88,6 @@ int main(int argc, char *argv[])
 			close_file(fd_to);
 			exit(99);
 		}
-	}
-
-	/* Check if the loop ended due to read error */
-	if (bytes_read == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close_file(fd_from);
-		close_file(fd_to);
-		exit(98);
 	}
 
 	/* Close both files */
