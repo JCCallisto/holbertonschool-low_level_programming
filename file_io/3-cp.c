@@ -66,8 +66,8 @@ int main(int argc, char *argv[])
 	{
 		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
 		
-		/* Check read return value first */
-		if (bytes_read == -1)
+		/* Check all possible read return values */
+		if (bytes_read < 0)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 			close_file(fd_from);
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 		
 		/* Only write if we successfully read some data */
 		bytes_written = write(fd_to, buffer, bytes_read);
-		if (bytes_written == -1 || bytes_written != bytes_read)
+		if (bytes_written != bytes_read)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			close_file(fd_from);
