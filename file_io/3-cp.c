@@ -51,15 +51,6 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	/* Test if we can actually read from the source file */
-	bytes_read = read(fd_from, buffer, 0);
-	if (bytes_read == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close_file(fd_from);
-		exit(98);
-	}
-
 	/* Create/open destination file for writing */
 	/* Permissions: rw-rw-r-- (0664) */
 	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
@@ -91,7 +82,7 @@ int main(int argc, char *argv[])
 		/* Try to write what we read */
 		bytes_written = write(fd_to, buffer, bytes_read);
 		
-		/* Check for write errors */
+		/* If write fails or doesn't write expected amount */
 		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
