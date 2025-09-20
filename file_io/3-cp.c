@@ -79,6 +79,15 @@ int main(int argc, char *argv[])
 		if (bytes_read == 0)
 			break;
 		
+		/* Validate that bytes_read is reasonable */
+		if (bytes_read > BUFFER_SIZE)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			close_file(fd_from);
+			close_file(fd_to);
+			exit(98);
+		}
+		
 		/* Only write if we successfully read some data */
 		bytes_written = write(fd_to, buffer, bytes_read);
 		if (bytes_written != bytes_read)
