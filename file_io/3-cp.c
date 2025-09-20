@@ -62,28 +62,26 @@ int main(int argc, char *argv[])
 	}
 
 	/* Copy content from source to destination */
-	do {
-		bytes_read = read(fd_from, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
+	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
+	{
+		bytes_written = write(fd_to, buffer, bytes_read);
+		if (bytes_written == -1 || bytes_written != bytes_read)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			close_file(fd_from);
 			close_file(fd_to);
-			exit(98);
+			exit(99);
 		}
+	}
 
-		if (bytes_read > 0)
-		{
-			bytes_written = write(fd_to, buffer, bytes_read);
-			if (bytes_written == -1 || bytes_written != bytes_read)
-			{
-				dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-				close_file(fd_from);
-				close_file(fd_to);
-				exit(99);
-			}
-		}
-	} while (bytes_read > 0);
+	/* Check if the loop ended due to read error */
+	if (bytes_read == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		close_file(fd_from);
+		close_file(fd_to);
+		exit(98);
+	}
 
 	/* Close both files */
 	close_file(fd_from);
